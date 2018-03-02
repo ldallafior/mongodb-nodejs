@@ -1,0 +1,118 @@
+<% include index.ejs %>
+
+<form action="/find" method="post">
+
+    <div class="container">
+        <div class="row">
+            <h2>Rechercher par médicament </h2>
+            <div class="search">
+                <input type="text" class="form-control input-sm" maxlength="64" name="Search" placeholder="Search" />
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<% if(resultats && resultats.length > 0) { %>
+<div class="row">
+    <div class="col-md-8">
+        <% resultats.forEach(function(resultat) { %>
+        <p><%= resultat.Denominationdumedicament %></p>
+        <p><%= resultat.Statutadministratif %></p>
+        <p><%= resultat.Formepharmaceutique %></p>
+        <p><%= resultat.Voiesdadministration%></p>
+        <p><%= resultat.Statutadministratif %></p>
+        <p><%= resultat.Typeprocedure%></p>
+        <p><%= resultat.Etatcommercialisation %></p>
+        <p><%= resultat.Dateamm  %></p>
+        <p><%= resultat.StatutBdm %></p>
+        <p><%= resultat.Titulaire %></p>
+        <p><%= resultat.Surveillancerenforcee %></p>
+
+        <h2>spécialités</h2>
+        <% if(resultat.specialites && resultat.specialites.length > 0) { %>
+        <% resultat.specialites.forEach(function(specialite) { %>
+        <p><%= (specialite.Libelleresentation) ? specialite.Libelleresentation:'' %></p>
+        <p><%= (specialite.Statutadministratifpresentation) ? specialite.Statutadministratifpresentation:'' %></p>
+        <p><%= (specialite.AMM ) ? specialite.AMM :'' %></p>
+        <p><%= (specialite.Datedeclaration ) ? specialite.Datedeclaration :'' %></p>
+        <p><%= (specialite.CIP13 ) ? specialite.CIP13 :'' %></p>
+        <p><%= (specialite.collectivites ) ? specialite.collectivites :'' %></p>
+        <p><%= (specialite.remboursement ) ? specialite.remboursement :'' %></p>
+        <p><%= (specialite.prix ) ? specialite.prix :'' %></p>
+        <p><%= (specialite.Textepresentant ) ? specialite.Textepresentant :'' %></p>
+        <hr>
+        <% }); %>
+        <% } %>
+
+        <h3>Compositions</h3>
+        <% if(resultat.compositions && resultat.compositions.length > 0) { %>
+        <% resultat.compositions.forEach(function(compositions) { %>
+        <p><%= (compositions.Designationelementharmaceutique) ? compositions.Designationelementharmaceutique:'' %></p>
+        <p><%= (compositions.substance) ? compositions.substance:'' %></p>
+        <p><%= (compositions.Denominationsubstance) ? compositions.Denominationsubstance:'' %></p>
+        <p><%= (compositions.Dosagesubstance ) ? compositions.Dosagesubstance :'' %></p>
+        <p><%= (compositions.Referencedosage  ) ? compositions.Referencedosage  :'' %></p>
+        <p><%= (compositions.Naturecomposant ) ? compositions.Naturecomposant :'' %></p>
+        <p><%= (compositions.therapeutiques ) ? compositions.therapeutiques :'' %></p>
+
+
+
+        <hr>
+        <% }); %>
+        <% } %>
+
+        <H4>groupe générique</H4>
+        <% if(resultat.groupegenerique && resultat.groupegenerique.length > 0) { %>
+        <% resultat.groupegenerique.forEach(function(groupegenerique) { %>
+        <p><%= (groupegenerique.Identifiant) ? groupegenerique.Identifiant:'' %></p>
+        <p><%= (groupegenerique.Libelle) ? groupegenerique.Libelle:'' %></p>
+        <p><%= (groupegenerique.CodeCIS) ? groupegenerique.CodeCIS:'' %></p>
+        <p><%= (groupegenerique.type ) ? groupegenerique.type :'' %></p>
+        <p><%= (groupegenerique.Numero ) ? groupegenerique.Numero :'' %></p>
+
+        <hr>
+        <% }); %>
+        <% } %>
+        <H5>condition de pressition</H5>
+        <% if(resultat.conditiondepressition && resultat.conditiondepressition.length > 0) { %>
+        <% resultat.conditiondepressition.forEach(function(conditiondepressition) { %>
+        <p><%=( conditiondepressition.prescription) ? conditiondepressition.prescription:'' %></p>
+
+        <hr>
+        <% }); %>
+        <% } %>
+        <H6>Avisasmir</H6>
+        <% if(resultat.avisasmi && resultat.avisasmi.length > 0) { %>
+        <% resultat.avisasmi.forEach(function(avisasmi) { %>
+        <p><%=(avisasmi.CodedossierHAS) ? avisasmi.CodedossierHAS:'' %></p>
+        <p><%=(avisasmi.Motifevaluation) ? avisasmi.Motifevaluation:'' %></p>
+        <p><%=(avisasmi.Date) ? avisasmi.Date:'' %></p>
+        <p><%=(avisasmi.ValeurASMR) ? avisasmi.ValeurASMR:'' %></p>
+        <p><%=(avisasmi.LibelleASMR) ? avisasmi.LibelleASMR:'' %></p>
+        <hr>
+        <% }); %>
+        <% } %>
+
+        <H7>Liens</H7>
+        <% if(resultat.liens && resultat.liens.length > 0) { %>
+        <% resultat.liens.forEach(function(liens) { %>
+        <p><%=(liens.LienpagesavisCT) ? liens.LienpagesavisCT:'' %></p>
+
+        <hr>
+        <% }); %>
+        <% } %>
+
+        <div class="clear"></div>
+
+        <% }); %>
+
+
+    </div>
+
+
+
+<% } %>
+
+</div>
