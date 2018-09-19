@@ -3,7 +3,7 @@
 - connection a base de donnée mongodb 
 - jointure
 - récupérer 
-- affiches
+- affichage
 - ejs
 - mongoose
 -  express
